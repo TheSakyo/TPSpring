@@ -14,7 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "posttable")
 
-public class Post{
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
