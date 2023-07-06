@@ -3,7 +3,7 @@ package fr.thesakyo.TPSpring.controller;
 import fr.thesakyo.TPSpring.model.User;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,52 +27,50 @@ public class UserControllerTest {
     public void getUsersTest() throws Exception {
 
         mockMvc.perform(get("/users"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].firstName", is("John")));
+                .andExpect(status().isOk());
     }
 
-    /*@Test
-    public void getUserTest(@PathVariable("id") final Long id) throws Exception {
+    @Test
+    public void getUserTest() throws Exception {
 
-        mockMvc.perform(get("/user/" + id))
+        mockMvc.perform(get("/user/{id}", 1))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].firstName", is("John")));
-    }*/
-   /* @GetMapping("/user/{id}")
-	public User getPost(@PathVariable("id") final Long id) {
+                .andExpect(jsonPath("$.firstName", is("John")));
+    }
 
-		Optional<User> user = userService.getUser(id);
-        return user.orElse(null);
-	}
+    @Test
+    public void createUserTest() throws Exception {
 
-    @PostMapping("/user")
-    public User createUser(@RequestBody User User) { return userService.saveUser(User); }
-    @PutMapping("/user/{id}")
-	public User updateUser(@PathVariable("id") final Long id, @RequestBody User user) {
+        String firstname = "\"firstName\": \"Sacha\"";
+        String lastname = "\"lastName\": \"Cardone\"";
+        String mail = "\"mail\": \"sacha.cardone@gmail.com\"";
+        String password = "\"password\": \"123456\"";
 
-		Optional<User> targetUser = userService.getUser(id);
+        String requestBody = String.format("{%firstname, %lastname, %mail, %password}",
+                                            firstname, lastname, mail, password);
 
-		if(targetUser.isPresent()) {
+        mockMvc.perform(post("/user").content(requestBody).contentType("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName").value("Sacha"));
+    }
 
-			User currentUser = targetUser.get();
+    @Test
+    public void updateUserTest() throws Exception {
 
-			String firstname = user.getFirstName();
-			if(firstname != null) {	currentUser.setFirstName(firstname); }
+        String firstname = "\"firstName\": \"Enzo\"";
+        String lastname = "\"lastName\": \"Cardone\"";
+        String mail = "\"mail\": \"sacha.cardone@gmail.com\"";
+        String password = "\"password\": \"123456\"";
 
-			String lastName = user.getLastName();
-			if(lastName != null) { currentUser.setLastName(lastName); }
+        String requestBody = String.format("{%firstname, %lastname, %mail, %password}",
+                                            firstname, lastname, mail, password);
 
-			String mail = user.getMail();
-			if(mail != null) { currentUser.setMail(mail); }
+        mockMvc.perform(put("/user/{id}", 1).content(requestBody).contentType("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName").value("Sacha"))
+                .andExpect(jsonPath("$.lastName").value("Cardone"));
+    }
 
-            String password = user.getPassword();
-			if(password != null) { currentUser.setPassword(password); }
-
-			userService.saveUser(currentUser);
-			return currentUser;
-
-		} else { return null; }
-	}
-	@DeleteMapping("/user/{id}")
+   /* @DeleteMapping("/user/{id}")
 	public void deleteUser(@PathVariable("id") final Long id) { userService.deleteUser(id); }*/
 }
