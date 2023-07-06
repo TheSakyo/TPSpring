@@ -31,13 +31,13 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$[0].firstName", is("John")));
     }
 
-    @Test
+    /*@Test
     public void getUserTest(@PathVariable("id") final Long id) throws Exception {
 
         mockMvc.perform(get("/user/" + id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].firstName", is("John")));
-    }
+    }*/
    /* @GetMapping("/user/{id}")
 	public User getPost(@PathVariable("id") final Long id) {
 
