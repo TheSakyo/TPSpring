@@ -55,7 +55,7 @@ public class User {
 
         if(thisEffectiveClass != oEffectiveClass) return false;
 
-        User user = (User) o;
+        User user = (User)o;
         return getId() != null && Objects.equals(getId(), user.getId());
     }
 
