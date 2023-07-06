@@ -13,7 +13,6 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "posttable")
-
 public class Post {
 
     @Id
