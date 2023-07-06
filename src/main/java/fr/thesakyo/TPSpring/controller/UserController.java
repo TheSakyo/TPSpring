@@ -18,7 +18,7 @@ public class UserController {
     @GetMapping("/users")
     public Iterable<User> getUsers() { return userService.getUsers(); }
     @GetMapping("/user/{id}")
-	public User getPost(@PathVariable("id") final Long id) {
+	public User getUser(@PathVariable("id") final Long id) {
 
 		Optional<User> user = userService.getUser(id);
         return user.orElse(null);
