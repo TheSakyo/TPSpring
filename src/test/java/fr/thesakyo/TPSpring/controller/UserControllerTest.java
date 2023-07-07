@@ -27,7 +27,7 @@ public class UserControllerTest {
     @Test
     public void getUserTest() throws Exception {
 
-        mockMvc.perform(get("/user/{id}", 1))
+        mockMvc.perform(get("/user/{id}", 2))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is("Tommy")));
     }
