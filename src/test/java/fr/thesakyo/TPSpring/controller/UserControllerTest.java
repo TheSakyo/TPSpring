@@ -19,7 +19,6 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-
     @Test
     public void getUsersTest() throws Exception {
 
