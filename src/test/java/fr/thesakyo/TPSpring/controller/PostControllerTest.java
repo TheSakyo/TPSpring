@@ -63,7 +63,7 @@ public class PostControllerTest {
    /*@Test
    public void deletePostTest() throws Exception {
 
-        mockMvc.perform(delete("/user/{id}", 1))
+        mockMvc.perform(delete("/post/{id}", 1))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title", is("Le canabis")));
    }*/
