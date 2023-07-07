@@ -22,7 +22,6 @@ public class PostController {
 	@Autowired
     private PostService postService;
 
-
     @GetMapping("/posts")
     public Iterable<Post> getPosts() { return postService.getPosts(); }
 	@GetMapping("/post/{id}")
