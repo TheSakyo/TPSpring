@@ -1,0 +1,10 @@
+# .gitlab-ci.yml
+image: maven:3.8.3-openjdk-17
+build:
+  stage: build
+  script:
+    - mvn compile
+test:
+  stage: test
+  script:
+    - mvn test
