@@ -47,7 +47,7 @@ public class UserControllerTest {
 
         mockMvc.perform(post("/user").content(requestBody).contentType("application/json"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName").value("Sacha"));
+                .andExpect(jsonPath("$.firstName").value(firstname));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class UserControllerTest {
         mockMvc.perform(put("/user/{id}", 1).content(requestBody).contentType("application/json"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName").value("Sacha"))
-                .andExpect(jsonPath("$.lastName").value("Cardone"));
+                .andExpect(jsonPath("$.lastName").value(lastname));
     }
 
    /* @DeleteMapping("/user/{id}")
