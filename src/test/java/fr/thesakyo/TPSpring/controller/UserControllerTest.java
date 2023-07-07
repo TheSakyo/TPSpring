@@ -70,7 +70,4 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title", is("Enzo")));
    }
-
-   /* @DeleteMapping("/user/{id}")
-	public void deleteUser(@PathVariable("id") final Long id) { userService.deleteUser(id); }*/
 }
