@@ -20,11 +20,7 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void getUsersTest() throws Exception {
-
-        mockMvc.perform(get("/users"))
-                .andExpect(status().isOk());
-    }
+    public void getUsersTest() throws Exception { mockMvc.perform(get("/users")).andExpect(status().isOk()); }
 
     @Test
     public void getUserTest() throws Exception {

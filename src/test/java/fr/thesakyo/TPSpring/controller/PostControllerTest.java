@@ -19,11 +19,7 @@ public class PostControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void getPostsTest() throws Exception {
-
-        mockMvc.perform(get("/posts"))
-                .andExpect(status().isOk());
-    }
+    public void getPostsTest() throws Exception { mockMvc.perform(get("/posts")).andExpect(status().isOk()); }
 
     @Test
     public void getPostTest() throws Exception {
