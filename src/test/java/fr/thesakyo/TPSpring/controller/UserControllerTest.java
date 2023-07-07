@@ -63,6 +63,14 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.lastName").value(lastname));
     }
 
+   @Test
+   public void deleteUserTest() throws Exception {
+
+        mockMvc.perform(delete("/user/{id}", 1))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title", is("Enzo")));
+   }
+
    /* @DeleteMapping("/user/{id}")
 	public void deleteUser(@PathVariable("id") final Long id) { userService.deleteUser(id); }*/
 }

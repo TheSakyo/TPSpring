@@ -46,7 +46,7 @@ public class PostControllerTest {
     }
 
     @Test
-    public void updateUserTest() throws Exception {
+    public void updatePostTest() throws Exception {
 
         String title = "\"title\": \"Le canabis\"";
         String content = "\"content\": \"Stupéfiant aux propriétés hallucinogènes et euphorisantes, extrait du chanvre indien\"";
@@ -62,6 +62,11 @@ public class PostControllerTest {
                 .andExpect(jsonPath("$.content").value(content));
     }
 
-   /* @DeleteMapping("/user/{id}")
-	public void deleteUser(@PathVariable("id") final Long id) { userService.deleteUser(id); }*/
+   @Test
+   public void deletePostTest() throws Exception {
+
+        mockMvc.perform(delete("/user/{id}", 1))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title", is("Le canabis")));
+   }
 }
