@@ -10,9 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
+@TestPropertySource(locations = "classpath:application-test.properties")
 @AutoConfigureMockMvc
 public class UserControllerTest {
 
@@ -27,22 +29,22 @@ public class UserControllerTest {
 
         mockMvc.perform(get("/user/{id}", 1))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName", is("Enzo")));
+                .andExpect(jsonPath("$.firstName", is("Tommy")));
     }
 
     @Test
     public void createUserTest() throws Exception {
 
-        String firstname = "\"firstName\": \"Sacha\"";
-        String lastname = "\"lastName\": \"Cardone\"";
-        String mail = "\"mail\": \"sacha.cardone@gmail.com\"";
-        String password = "\"password\": \"123456\"";
+        String firstname = "\"firstName\": \"Rémy\"";
+        String lastname = "\"lastName\": \"Moro\"";
+        String mail = "\"mail\": \"remy.moro@gmail.com\"";
+        String password = "\"password\": \"remy123\"";
 
         String requestBody = "{ " + firstname + ", " + lastname + ", " + mail + ", " + password + " }";
 
         mockMvc.perform(post("/user").content(requestBody).contentType("application/json"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName").value("Sacha"));
+                .andExpect(jsonPath("$.firstName").value("Rémy"));
     }
 
     @Test
@@ -51,7 +53,7 @@ public class UserControllerTest {
         String firstname = "\"firstName\": \"Enzo\"";
         String lastname = "\"lastName\": \"Cardone\"";
         String mail = "\"mail\": \"sacha.cardone@gmail.com\"";
-        String password = "\"password\": \"123456\"";
+        String password = "\"password\": \"sacha123\"";
 
         String requestBody = "{ " + firstname + ", " + lastname + ", " + mail + ", " + password + " }";
 
